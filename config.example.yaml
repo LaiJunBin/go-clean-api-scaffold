@@ -1,0 +1,21 @@
+env: development  # development | release | production
+
+server:
+  port: 8080
+  allowedOrigins:
+    - http://localhost:5173
+
+database:
+  sqlite:
+    path: ./hello.db
+
+log:
+  level: info  # debug | info | warn | error
+
+test:
+  server:
+    port: 18080
+    allowedOrigins: []
+  database:
+    sqlite:
+      path: ./test.db

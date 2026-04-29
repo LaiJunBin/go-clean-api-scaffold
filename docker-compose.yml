@@ -1,0 +1,20 @@
+services:
+  app:
+    container_name: go-clean-api-scaffold-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: go_app_dev
+    volumes:
+      - .:/app/go-clean-api-scaffold
+    working_dir: /app/go-clean-api-scaffold
+    networks:
+      - go-clean-api-scaffold-network
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+networks:
+  go-clean-api-scaffold-network:
+    driver: bridge
+    name: go-clean-api-scaffold-network

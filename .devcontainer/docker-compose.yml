@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  app:
+    volumes:
+      - ../.git:/app/.git:cached
+    environment:
+      - GIT_DISCOVERY_ACROSS_FILESYSTEM=1
+    command: sleep infinity

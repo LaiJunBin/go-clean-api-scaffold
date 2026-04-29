@@ -1,0 +1,14 @@
+tmp/
+config.yaml
+config_test.yaml
+coverage.out
+/internal/app/**/mocks
+
+# SQLite database file
+*.db
+
+# Generated API code
+api/api.gen.go
+
+# Build output
+bin/

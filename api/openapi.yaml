@@ -1,0 +1,92 @@
+openapi: 3.0.0
+info:
+  title: Hello World API
+  version: 0.0.1
+tags:
+  - name: Hello
+paths:
+  /hello:
+    get:
+      tags:
+        - Hello
+      operationId: sayHello
+      summary: Say hello to someone
+      parameters:
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - success
+                  - data
+                properties:
+                  success:
+                    type: boolean
+                    default: true
+                  data:
+                    $ref: '#/components/schemas/Hello.Greeting'
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shared.APIBadRequestResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shared.APIInternalServerErrorResponse'
+components:
+  schemas:
+    Hello.Greeting:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+    Shared.APIBadRequestResponse:
+      type: object
+      required:
+        - message
+        - details
+        - success
+      properties:
+        message:
+          type: string
+          enum:
+            - Bad Request
+        details:
+          type: array
+          items:
+            type: string
+        success:
+          type: boolean
+          default: false
+    Shared.APIInternalServerErrorResponse:
+      type: object
+      required:
+        - message
+        - details
+        - success
+      properties:
+        message:
+          type: string
+          enum:
+            - Internal Server Error
+        details:
+          type: array
+          items:
+            type: string
+        success:
+          type: boolean
+          default: false
